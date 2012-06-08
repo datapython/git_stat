@@ -4,6 +4,7 @@
 *.lst
 *.*~
 #*.*#
+<<<<<<< HEAD
 
 
 # Compiled source #
@@ -44,4 +45,6 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+=======
+>>>>>>> b6d8a17c76fe82270a62a8b7006cca51d99f15e3
 
