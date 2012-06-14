@@ -1,0 +1,3 @@
+1:	proc freq, proc summary, how do they deal with missing values?  In proc summary, if choose mean, what is that mean for?
+
+2:	sas merge and proc sql join difference? what need to take care about merge?
