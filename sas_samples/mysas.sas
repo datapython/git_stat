@@ -38,3 +38,21 @@ read all var {Weight Height};
 close Sashelp.Class;
 
 
+******  2: how to obtain percentiles not automatically calcuated in SAS   ******;
+***  http://www.ats.ucla.edu/stat/sas/faq/percentiles.htm    ***;
+
+proc univariate data=hsb noprint;
+   var math science;
+   output out=percentiles2 pctlpts=33 45 pctlpre=math science;
+run;
+
+proc print data=percentiles2;
+run;
+
+
+******  3:       *******;
+
+
+
+
+
