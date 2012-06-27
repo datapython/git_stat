@@ -1,4 +1,4 @@
-***  usage: sas seo.kws.expr.samp.sasjsp.sas -sysparm '99 01may2012 14may2012 yes all 10000/10000/10000 8b hsong@nextag.com' &   ***;
+***  usage: sas seo.kws.expr.samp.sasjsp.sas -sysparm '99 01may2012 14may2012 yes all 10000/10000/10000 8b hsong@abc.com' &   ***;
  
 **************** This is to use visitnew table rather than rpt_pub_rpv_phrase table to prepare for samples   *************;
 
@@ -499,7 +499,7 @@ run;
 ods csvall close;
 ods listing;
       
-x uuencode &file. &file. | mail -s "&file.: sample time from &s_stdt to &s_eddt" hsong@nextag.com,&notify;
+x uuencode &file. &file. | mail -s "&file.: sample time from &s_stdt to &s_eddt" hsong@abc.com,&notify;
 
        
         
