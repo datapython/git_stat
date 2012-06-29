@@ -2,4 +2,7 @@
 ### there is a library called RHadoop by Revolutionary Analytics  ###
 
 
-###  2:  
+###  2: Run R job in linux serser  ###
+###  R CMD BATCH rjob.R , then there will be generated .Rout file  ###
+
+   
