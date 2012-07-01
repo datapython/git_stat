@@ -22,8 +22,10 @@
 ******  3:     ******;
 
 
-******  2:     ******;
-
+******  2: how to macros in catalog    ******;
+proc catalog catalog=LIBNAME.sasmacr;
+	contents;
+run;
 
 
 ******  1: how to call R function in sas  ******;
