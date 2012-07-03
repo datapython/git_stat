@@ -5,4 +5,14 @@
 ###  2: Run R job in linux serser  ###
 ###  R CMD BATCH rjob.R , then there will be generated .Rout file  ###
 
-   
+
+###  3: R: do like SAS proc summary  ###
+read.csv("D:/hsong/SkyDrive/Dropbox/sampledata.csv")->data1
+data.frame(data1)->data1
+attach(data1)
+names(data1)   ### check column names of data frame in R
+aggregate(clicks,list(report_date,category_id),mean)   ### calculate the mean of clicks on report_date and category_id
+     ###  similar to SAS: class report_date category_id; var clicks;
+
+
+
