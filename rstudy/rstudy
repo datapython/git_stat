@@ -15,4 +15,23 @@ aggregate(clicks,list(report_date,category_id),mean)   ### calculate the mean of
      ###  similar to SAS: class report_date category_id; var clicks;
 
 
+###  4: Interface from R to SAS  ###
+system("C:\\Programe Files\\SAS\\SAS Foundation\\9.2\\SAS.exe
+        C:\\my_r_files\\test.sas"
+      )
+###  Suppose test.sas is lke:
+     proc summary data=sashelp.class mean sum;
+     	var height;
+     	class sex;
+     	output out=results;
+     run;
+     
+     proc export data=results outfile="C:\tmp\results.csv" DBMS=csv replace;
+     	putname=yes;
+     run;
+###  Import the data to R:
+import_sas_data <- read.csv("C:\\tmp\results.csv", sep=",", header=T)
+
+
+###  5:
 
