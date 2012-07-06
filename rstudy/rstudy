@@ -1,8 +1,10 @@
 ###  1:  R with Hadoop  ###
 ### there is a library called RHadoop by Revolutionary Analytics  ###
-
+###  http://www.lecturemaker.com/2011/02/rhipe/?doNavDotNow=14&lecID=1#video  ##
 
 ###  2: Run R job in linux serser  ###
 ###  R CMD BATCH rjob.R , then there will be generated .Rout file  ###
 
-   
+###  3: R usrful commands  ###
+###   attributes(mydata)  names(mydata)  class(mydata)  scan, search(),  data()        load   attach     
+
