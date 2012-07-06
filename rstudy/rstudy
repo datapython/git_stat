@@ -8,3 +8,38 @@
 ###  3: R usrful commands  ###
 ###   attributes(mydata)  names(mydata)  class(mydata)  scan, search(),  data()        load   attach     
 
+###  3: R: do like SAS proc summary  ###
+read.csv("D:/hsong/SkyDrive/Dropbox/sampledata.csv")->data1
+data.frame(data1)->data1
+attach(data1)
+names(data1)   ### check column names of data frame in R
+aggregate(clicks,list(report_date,category_id),mean)   ### calculate the mean of clicks on report_date and category_id
+     ###  similar to SAS: class report_date category_id; var clicks;
+
+
+###  4: Interface from R to SAS  ###
+system("C:\\Programe Files\\SAS\\SAS Foundation\\9.2\\SAS.exe
+        C:\\my_r_files\\test.sas"
+      )
+###  Suppose test.sas is lke:
+     proc summary data=sashelp.class mean sum;
+     	var height;
+     	class sex;
+     	output out=results;
+     run;
+     
+     proc export data=results outfile="C:\tmp\results.csv" DBMS=csv replace;
+     	putname=yes;
+     run;
+###  Import the data to R:
+import_sas_data <- read.csv("C:\\tmp\results.csv", sep=",", header=T)
+
+
+###  5: calculate the statistics in subset and merge together
+library(stats)
+aggregate(cbind(ncases, ncontrols) ~ alcgp + tobgp, data = esoph, sum)->data1
+aggregate(cbind(ncases, ncontrols) ~ alcgp , data = esoph, sum)->data2
+merge(data1, data2, by.x="alcgp", by.y="alcgp")
+
+
+
