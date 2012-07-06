@@ -33,5 +33,11 @@ system("C:\\Programe Files\\SAS\\SAS Foundation\\9.2\\SAS.exe
 import_sas_data <- read.csv("C:\\tmp\results.csv", sep=",", header=T)
 
 
-###  5:
+###  5: calculate the statistics in subset and merge together
+library(stats)
+aggregate(cbind(ncases, ncontrols) ~ alcgp + tobgp, data = esoph, sum)->data1
+aggregate(cbind(ncases, ncontrols) ~ alcgp , data = esoph, sum)->data2
+merge(data1, data2, by.x="alcgp", by.y="alcgp")
+
+
 
