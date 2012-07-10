@@ -13,8 +13,9 @@ read.csv("D:/hsong/SkyDrive/Dropbox/sampledata.csv")->data1
 data.frame(data1)->data1
 attach(data1)
 names(data1)   ### check column names of data frame in R
-aggregate(clicks,list(report_date,category_id),mean)   ### calculate the mean of clicks on report_date and category_id
-     ###  similar to SAS: class report_date category_id; var clicks;
+aggregate(clicks,list(report_date,category_id),mean)   
+### calculate the mean of clicks on report_date and category_id
+###  similar to SAS: class report_date category_id; var clicks;
 
 
 ###  4: Interface from R to SAS  ###
@@ -40,6 +41,19 @@ library(stats)
 aggregate(cbind(ncases, ncontrols) ~ alcgp + tobgp, data = esoph, sum)->data1
 aggregate(cbind(ncases, ncontrols) ~ alcgp , data = esoph, sum)->data2
 merge(data1, data2, by.x="alcgp", by.y="alcgp")
+
+
+###  R: pass parameters value from command line
+### vi rscript.R and input:
+args <- commandArgs(TRUE)
+x=as.numeric(args)
+x
+y=sin(x)
+y
+## Then go to the command line and run: Rscript rscript.R 1 2 3 4 5 6 7
+# the output will be:
+# [1] 1 2 3 4 5 6 7
+# [1]  0.8414710  0.9092974  0.1411200 -0.7568025 -0.9589243 -0.2794155  0.6569866
 
 
 
