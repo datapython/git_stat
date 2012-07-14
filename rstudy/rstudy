@@ -43,7 +43,7 @@ aggregate(cbind(ncases, ncontrols) ~ alcgp , data = esoph, sum)->data2
 merge(data1, data2, by.x="alcgp", by.y="alcgp")
 
 
-###  R: pass parameters value from command line
+###  6: R: pass parameters value from command line
 ### vi rscript.R and input:
 args <- commandArgs(TRUE)
 x=as.numeric(args)
@@ -54,6 +54,25 @@ y
 # the output will be:
 # [1] 1 2 3 4 5 6 7
 # [1]  0.8414710  0.9092974  0.1411200 -0.7568025 -0.9589243 -0.2794155  0.6569866
+
+
+###  Calculate Frequency in R(function table) and SAS(proc freq)   ###
+read.csv("sampledata.csv",header=T)->data1
+attach(data1)
+names(data1)
+table(PUBLISHER_ID,category_id)
+# then you can cite the output as a matrix #
+
+
+
+
+
+
+
+
+
+
+
 
 
 
