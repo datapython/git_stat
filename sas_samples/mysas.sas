@@ -19,7 +19,36 @@
 ******  4:     ******;
 
 
-******  3:     ******;
+******  3: how to create index in SAS    ******;
+Index
+1: yield faster access to small subsets of obs for WHERE processing
+2: return obs in sorted order for BY processing
+3: perform table lookup operations
+4: join obs
+5: modify obs
+
+Simple index:  (index=(myindex))  or (index=(lastname firstname))
+Composite index:  (index=(comp_index=(lastname firstname)));
+
+Pcoc datasets library=libref;
+	Modify sas_data_set;
+	Index delete index_name;
+	Index create index_specification;
+Quit;
+
+Proc sql;
+	Create index index_name on table_name;
+	Drop index index_name from table_name;
+Quit;
+
+Task	                              						 Effect
+Add observation(s) to data set	                                Value/identifier pairs are added to index(es).
+Delete observation(s) from data set				Value/identifier pairs are deleted from index(es).
+Update observation(s) in data set				Value/identifier pairs are updated in index(es).
+Delete data set							The index file is deleted.
+Rebuild data set with DATA step					The index file is deleted.
+Sort the data in place with the FORCE option in PROC SORT	The index file is deleted.
+
 
 
 ******  2: how to macros in catalog    ******;
