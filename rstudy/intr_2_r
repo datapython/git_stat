@@ -1,0 +1,48 @@
+************************    Ch5: Arrays and Matrices   *******************
+
+dim()  array()   matrix()
+
+array a has dim as c(3,4,2), the data vector is a[1,1,1], a[2,,1,1], a[3,1,1], a[1,2,1], a[2,2,1] .... z[2,4,2], a[3,4,2]
+
+index matrix: this matrix is as an index of an array
+
+Recucling rule: 
+x=1:3 
+y=6:10
+x_long=1:10
+z1=x %o% y
+z2=y %o% x
+z3=x_long %o% z1
+1: from left to right:   x+y
+2: short VECTOR	operands are expanded by recycling their values: x+y
+3: the arrays must all have the same dim attributes or an error results: z1+z2
+4: Any VECTOR operands longer than a matrix or array generates an error: x_long+z1
+5: If array are present and no error precipitetes, the reusut is an array structure with the common dim attributes of its array operands. 
+
+outer product of two arrays  a %o% b, or outer(a,b,"*")
+Transpose a array: aperm(array,c(3,2,1))
+
+diag(vector)   diag(Matrix)   diag(k_numeric) diag(10_)
+
+%*%   solve(A,b)  
+
+x %*% x'  --> x'x, best way to get x'x is crossprod(x)
+cbind(x) %*% x --> xx' , also can use x %*% rbind(x), best way is x%o%x
+
+svd(matrix): singular value decomposition
+det(matrix)   determinant(matrix)
+lsfit(matrix, vector)     QR decomposition: qr(matrix)
+
+cbind  rbind
+
+as.vector(X)   c(X)
+
+cut(incomes, breask=35+10*(0:7)) -> incomef  :  will break income into intervals, like SAS proc format,  (35,45]   (45,55]  (55,65]  (65,75]
+
+table(incomef, statef)
+
+*****************************  Ch6: List and data frames  ****************
+
+
+
+
