@@ -16,7 +16,9 @@
 ******  5:     ******;
 
 
-******  4:     ******;
+******  4: SAS operators    ******;
+http://support.sas.com/documentation/cdl/en/lrcon/62955/HTML/default/viewer.htm#a000780367.htm
+some of it: in and or || : ,  'fox'='fox ' but 'fox' ^= ' fox'(trailing blanks are ignored, leading blanks are not) 
 
 
 ******  3: how to create index in SAS    ******;
