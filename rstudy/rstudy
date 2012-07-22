@@ -67,7 +67,12 @@ table(PUBLISHER_ID,category_id)
 # then you can cite the output as a matrix #
 
 
+###  7: R: how to draw several graphs on one phrah (overlap)  ###
+after plot() draw the first one, use par(new=TRUE), then draw the second one
+sometimes it is better to use the same axis notations like all plots add the limitations as plot(¡­¡­¡­¡­,xlim=c))
 
+
+###  8: 
 
 
 
