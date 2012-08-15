@@ -13,7 +13,17 @@
 ******  6:     ******;
 
 
-******  5:     ******;
+******  5: Proc Logistic and related study notes    ******;
+proc logistic data=remission outest=betas covout;
+        model remiss(event='1')=cell smear infil li blast temp / selection=stepwise slentry=.3 slstay=.35 details lackfit;
+	output out=pred p=phat lower=lcl upper=ucl predprob=(individual crossvalidate);
+run;
+
+**  LACKFIT Option: show the Hosmer and Lemesshow goodness-of-fit test for the final model  **;
+**  SELECTION Option: is used for model selection automatically                             **;
+**  EXPB: if there is categorical variables and want to calculate exponential coefficients, add EXPB option  **;
+**  Interaction: use | between variables, at the end use @2 to require second order interactions  ***;
+
 
 
 ******  4: SAS operators    ******;
