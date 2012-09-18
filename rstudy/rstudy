@@ -72,7 +72,26 @@ after plot() draw the first one, use par(new=TRUE), then draw the second one
 sometimes it is better to use the same axis notations like all plots add the limitations as plot(¡­¡­¡­¡­,xlim=c))
 
 
-###  8: 
+###  8:  logistic regression
+
+read.csv("D:\\hsong\\Desktop\\qcs.csv")->qsc1
+
+qsc=qsc1[,c("deals", "c_category_id", "payer_id")]
+
+attach(qsc)
+
+## change value in data.frame to factors
+qsc$c_category_id<-as.factor(c_category_id)
+
+qsc$payer_id<-as.factor(payer_id)
+
+detach(qsc)
+
+##  logistic regression and xs are factors
+glm(deals~payer_id+c_category_id, family=binomial, data=qsc)
+
+##  subset from data.frame by picl levels within factors
+subset(qsc,payer_id %in% (550))->subset1
 
 
 
@@ -83,5 +102,6 @@ sometimes it is better to use the same axis notations like all plots add the lim
 
 
 
->>>>>>> 48d1bf581d1ea67486e9189eec99a17ddafed262
+
+
 
