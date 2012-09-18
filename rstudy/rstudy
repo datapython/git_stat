@@ -76,6 +76,7 @@ sometimes it is better to use the same axis notations like all plots add the lim
 
 read.csv("D:\\hsong\\Desktop\\qcs.csv")->qsc1
 
+##  pick three columns we wanted
 qsc=qsc1[,c("deals", "c_category_id", "payer_id")]
 
 attach(qsc)
