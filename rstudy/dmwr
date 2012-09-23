@@ -18,4 +18,29 @@ values=scan(filename,what=c(f1=0, NULL, f3=0, rep(list(NULL),6), f10=0) ## read 
 read.fwf("d:\\SkyDrive\\r_temp\\city.txt", width=c(19,9), as.is=TRUE)
 city$V2=as.numeric(gsub(",","",city$V2))
 
+###  2.5
+# A list with an associated "class" attribute designating what type of list it is is an S3 class.
+# S3 can be created using class() function or add the class attributes after creating a list
+# here is an example how to define S3 class
+h<-list(a=rnorm(3), b="This should not be printed")
+class(h)<-"myclass"
+print.myclass<-function(x){cat("A is:", x$a, "\n")}
+print(h)
+# pay attendtion to the diff of this print(h) with print(h) directly without mycalss
+## another example
+slm=lm(stack.loss~Air.Flow+Water/Temp,data=stackloss)
+class(slm)
+apropos('.*\\.lm$')  # apropos is used to check all the available methods for a given class
+names(slm)  # names function is to find available elements of an object
+## S4 class: 
+
+
+
+
+
+
+
+
+
+
 
