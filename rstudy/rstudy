@@ -95,7 +95,12 @@ glm(deals~payer_id+c_category_id, family=binomial, data=qsc)
 subset(qsc,payer_id %in% (550))->subset1
 
 
-
+###  9:  usage of by: an example of weighted mean
+x=c( -0.14782,0.62819, -1.73016,  0.04899,  0.48055,  1.52336,  0.76867,  0.29333, -1.18384,  0.96684,  0.50848,  2.25771,  0.14574,  0.50290,  0.26342)
+b=c(1:5,1:5,seq(1,9,by=2))
+f=rep(c(1,2,3),each=5)
+df=as.data.frame(cbind(x,b,f))
+by(df, list(df$f), function(subset) weighted.mean(subset$x, subset$b))
 
 
 
