@@ -1,0 +1,45 @@
+1: an video example auto drive
+
+
+2: House prive v.s. house size in Portland, OR (linear regression)
+* Notations:
+	m=# tranining examples
+	x=imput variables
+	y=output variables
+	(x,y) training example
+	i^{th} training example (x^{(i)}, y^{(i)})
+
+	living area, #of bedrooms, price
+
+		training set
+		->learning algorithm
+		->h: hypothesis  ->  estimate price
+		h(x)=\theta_{0} + \theta_{1) \times x
+
+	x1: size
+	x2: # of bedrooms
+	h(x)=h_{\theta}(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 = \sum_{i=1}^{2}\theta_x x_i = \Theta^{T} X
+
+	min_{\Theta} \sum_{i=1}^{m} (h_{\Theta}(x_i)-y_i)^2 -> J(\Theta)
+
+	Algorithm
+		1: start with some \Theta, say \Theta=0.
+		2: keep chaning \Theta to reduce J(\Theta), Gradient Descent(decrease fast but sometimes depends on initial value to local min)
+		Gradient Descent:  \theta_i := \theta_i - \alpha \frac{\partial J(\theta)}{\partial \theta_i}
+
+(Temp stop at 30:00 mins)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
