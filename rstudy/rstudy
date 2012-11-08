@@ -125,7 +125,9 @@ as.data.frame(dfb_reg1)->df_dfb_reg1
 plot(df_dfb_reg1$pctmetro,col="red")
 par(new=T)
 plot(df_dfb_reg1$single,col="green")
-
+###  it can also be done by lines or points, which will draw graph in the existed plot
+plot(df_dfb_reg1$pctmetro,col="red")
+points(df_dfb_reg1$single,col="green")
 
 
 
