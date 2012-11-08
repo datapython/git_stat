@@ -103,7 +103,24 @@ df=as.data.frame(cbind(x,b,f))
 by(df, list(df$f), function(subset) weighted.mean(subset$x, subset$b))
 
 
+###  10: plot and then label each point
+library(foreign)
+read.spss("http://dl.dropbox.com/u/10684315/ucla_reg/crime.sav",to.data.frame=T)->crime
+## plot crime vs single and add state as the label to each point
+plot(crime$pctmetro,crime$crime)
+text(crime$pctmetro,crime$crime,crime$state,cex=.5,pos=2)
 
+
+###  10: add a new plot on the existed plot
+names(crime)<-tolower(names(crime))
+row.names(crime)<-crime$state
+lm(crime~pctmetro+pctsingle+poverty+single,crime)->crime_reg1
+library(car)
+dfbetas(crime_reg1)->dfb_reg1
+as.data.frame(dfb_reg1)->df_dfb_reg1
+plot(df_dfb_reg1$pctmetro,col="red")
+par(new=T)
+plot(df_dfb_reg1$single,col="green")
 
 
 
