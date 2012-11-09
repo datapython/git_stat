@@ -115,7 +115,7 @@ plot(crime$pctmetro,crime$crime)
 text(crime$pctmetro,crime$crime,crime$state,cex=.5,pos=2)
 
 
-###  10: add a new plot on the existed plot
+###  11: add a new plot on the existed plot
 names(crime)<-tolower(names(crime))
 row.names(crime)<-crime$state
 lm(crime~pctmetro+pctsingle+poverty+single,crime)->crime_reg1
@@ -128,6 +128,50 @@ plot(df_dfb_reg1$single,col="green")
 ###  it can also be done by lines or points, which will draw graph in the existed plot
 plot(df_dfb_reg1$pctmetro,col="red")
 points(df_dfb_reg1$single,col="green")
+
+
+###  12: usful functions after linear regression
+reg1=lm(y~x, data)
+plot(hatvalues(reg1),rstudent(reg1),cex=.5,col="red")
+cd=sqrt(cooks.distance(crime_reg1))
+
+
+###  13: merge multiple dataframe(tables) together by multiple columns
+DF1<-data.frame(var1=letters[1:5],a=rnorm(5), b=rnorm(5), c=rnorm(5))
+DF2<-data.frame(var1=letters[3:7],a=rnorm(5), b=rnorm(5), c=rnorm(5))
+DF3<-data.frame(var1=letters[6:10],a=rnorm(5), b=rnorm(5), c=rnorm(5))
+DF4<-data.frame(var1=letters[8:12],a=rnorm(5), b=rnorm(5), c=rnorm(5))
+DF<-DF1
+## this one not work
+for (.df in (list(DF2, DF3, DF4))){
+	DF<-merge(DF,.df,by.x="var1",by.y="var1",all=T,suffixes=c("", ""))
+}
+## this one works
+DF <- DF1
+for ( .df in list(DF2,DF3,DF4) ) {
+	DF <-merge(DF,.df,by.x="var1", by.y="var1", all=T)
+        names(DF)[-1] <- paste(names(DF)[-1], 2:length(names(DF)))
+}
+names(DF) <- sub("[[:space:]].+$", "", names(DF), perl=T)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
