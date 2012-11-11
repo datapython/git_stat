@@ -184,7 +184,16 @@ df304=sum2[sum2$publisher_id==304,]
 merge(df29,df304,by=c("report_date","category_id"))
 
 
-
+###  15: sort data
+# sorting examples using the mtcars dataset
+attach(mtcars)
+# sort by mpg
+newdata <- mtcars[order(mpg),] 
+# sort by mpg and cyl
+newdata <- mtcars[order(mpg, cyl),]
+#sort by mpg (ascending) and cyl (descending)
+newdata <- mtcars[order(mpg, -cyl),] 
+detach(mtcars)
 
 
 
