@@ -195,7 +195,13 @@ newdata <- mtcars[order(mpg, cyl),]
 newdata <- mtcars[order(mpg, -cyl),] 
 detach(mtcars)
 
-
+###  16: subset of a data with subset funtion
+# pick the obs with cyl==4 and gear==4, and pick cols as below
+subset(mtcars, cyl==4 & gear==4, select=c("mpg", "cyl", "gear", "hp", "wt"))
+# drop the col hp and wt
+subset(mtcars, select=-c(hp, wt))
+# pick the columns from mpg to am
+subset(mtcars, select=mpg:am)
 
 
 
