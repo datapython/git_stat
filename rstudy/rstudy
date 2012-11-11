@@ -155,6 +155,34 @@ for ( .df in list(DF2,DF3,DF4) ) {
 names(DF) <- sub("[[:space:]].+$", "", names(DF), perl=T)
 
 
+###  14: drop columns, date convert, aggregate and merge
+# remove all data in workspace
+rm(list=ls())
+# clear the screen
+cat("\014")
+# read in data and treat . as missing(NA)
+read.csv("D:\\hsong\\SkyDrive\\r_temp\\visitnew_summary.csv",na.string='.',stringsAsFactors=F,header=T)->visnew
+head(visnew)
+visnew$report_date<-as.Date(visnew$report_date,"%d-%b-%y")
+# check the class of each variable in the table
+sapply(visnew,class)
+# lowcase all column names
+names(visnew)<-tolower(names(visnew))
+# drop two unnecessary columns, or use  subset(visnew, select=-c(x_type_, x_freq_))
+visnew[,!(names(visnew) %in% c("x_type_", "x_freq_"))]->visnews
+head(visnews)
+
+## aggregate data
+aggregate(cbind(visits, revenue, clicks)~report_date,visnew,sum)->sum1
+## set the missing value as 0: visnew[is.na(visnew)]<-0 
+aggregate(cbind(visits, revenue, clicks)~report_date+publisher_id+category_id, visnew, sum)->sum2
+## be careful, if don't use na.rm, then the return value below will be NA
+aggregate(visnew[,c("visits","revenue","clicks")],by=list(rpt_dt=visnew$report_date,pub_id=visnew$publisher_id),sum,na.rm=T)
+## how to merge two df by multiple variables
+df29=sum2[sum2$publisher_id==29,]
+df304=sum2[sum2$publisher_id==304,]
+merge(df29,df304,by=c("report_date","category_id"))
+
 
 
 
