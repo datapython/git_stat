@@ -195,6 +195,7 @@ newdata <- mtcars[order(mpg, cyl),]
 newdata <- mtcars[order(mpg, -cyl),] 
 detach(mtcars)
 
+
 ###  16: subset of a data with subset funtion
 # pick the obs with cyl==4 and gear==4, and pick cols as below
 subset(mtcars, cyl==4 & gear==4, select=c("mpg", "cyl", "gear", "hp", "wt"))
@@ -204,9 +205,19 @@ subset(mtcars, select=-c(hp, wt))
 subset(mtcars, select=mpg:am)
 
 
+###  17: use gl to generate factor levels
+gl(n, k, length = n*k, labels = 1:n, ordered = FALSE)
+f1=gl(n=3,k=1,length=30, labels=c("A","B","C"))
+f2=gl(n=5,k=2,length=30, labels=1:5)
 
 
-
+###  18: Frequencies and Crosstabs: table, xtabs, ftable, crosstable
+attach(mtcars)
+tab1<-table(cyl, gear, carb)
+ftable(tab1)
+tab2<-xtabs(~cyl+gear+carb)
+ftable(tab2)
+detach(mtcars)
 
 
 
