@@ -220,8 +220,18 @@ ftable(tab2)
 detach(mtcars)
 
 
-
-
+###  19: regular expression
+# grep to capture the presence of a char
+grep("apple", c("crab apple", "Apple jack", "apple sauce"))
+grep("apple", c("crab apple", "Apple jack", "apple sauce"), ignore.case=T)
+# strsplit to break string into small pieces
+text="Today is Monday, all the people are very happy to work"
+strsplit(text, ' ')
+# regexpr gregexpr to pinpint nad extract the position of a string in a regular expression
+regexpr('[a-z]', c("today is monday", "007 is interesting", "2955 univ. dr", "apple store"))
+# replace and substitute
+price=c("$110,112.00", "$3,567.23", "$99,989.00", "1,028.98")
+sub('[$,]','',price)
 
 
 
