@@ -235,6 +235,7 @@ regexpr('[a-z]', c("today is monday", "007 is interesting", "2955 univ. dr", "ap
 # replace and substitute
 price=c("$110,112.00", "$3,567.23", "$99,989.00", "1,028.98")
 sub('[$,]','',price)
+# The two *sub functions differ only in that sub replaces only the first occurrence of a pattern whereas gsub replaces all occurrences.
 ## compare to SAS
  a) paste("X", 1, sep='_')        <------->  cat   or   || 
  b) substring(state.name,1,2)     <------->  substr(statename,1,2)
