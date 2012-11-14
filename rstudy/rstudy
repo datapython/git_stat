@@ -255,6 +255,11 @@ library(Hmisc)
 mydata<-sasxport.get("/home/sas2r")
 # to export the data to an txt file, delimited by Tab
 write.table(mydata, "/home/rout", sep="\t")
+=======
+# The two *sub functions differ only in that sub replaces only the first occurrence of a pattern whereas gsub replaces all occurrences.
+
+
+
 
 
 
