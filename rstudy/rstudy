@@ -6,6 +6,7 @@
 ###  R CMD BATCH rjob.R , then there will be generated .Rout file  ###
 # list objects in a package:  ls("package:plyr")
 # list function in a package: lsf.str("package:plyr")
+# install.packages("plyr")
 
 ###  3: R usrful commands  ###
 attributes(mydata)  names(mydata)  class(mydata)  scan, search(),  data(), ls(), ls.str(), cat("\014")       
