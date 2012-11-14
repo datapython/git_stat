@@ -6,7 +6,9 @@
 ###  R CMD BATCH rjob.R , then there will be generated .Rout file  ###
 
 ###  3: R usrful commands  ###
-###   attributes(mydata)  names(mydata)  class(mydata)  scan, search(),  data(), ls(), ls.str(), cat("\014")        load   attach     
+attributes(mydata)  names(mydata)  class(mydata)  scan, search(),  data(), ls(), ls.str(), cat("\014")       
+load   attach   getwd()  dir("/dir")   options()   history(max.show=Inf)    savehistory()  loadhistory()
+save.image()    save(object)   source()   sink()
 
 ###  3: R: do like SAS proc summary  ###
 read.csv("D:/hsong/SkyDrive/Dropbox/sampledata.csv")->data1
@@ -134,6 +136,7 @@ points(df_dfb_reg1$single,col="green")
 reg1=lm(y~x, data)
 plot(hatvalues(reg1),rstudent(reg1),cex=.5,col="red")
 cd=sqrt(cooks.distance(crime_reg1))
+vif(reg1)
 
 
 ###  13: merge multiple dataframe(tables) together by multiple columns
@@ -232,9 +235,26 @@ regexpr('[a-z]', c("today is monday", "007 is interesting", "2955 univ. dr", "ap
 # replace and substitute
 price=c("$110,112.00", "$3,567.23", "$99,989.00", "1,028.98")
 sub('[$,]','',price)
+## compare to SAS
+ a) paste("X", 1, sep='_')        <------->  cat   or   || 
+ b) substring(state.name,1,2)     <------->  substr(statename,1,2)
+ c) strsplit(text, ' ')           <------->  scan(text, 1, ' ')
+ d) grep('pop', names(LifeCycleSavings))   <------->  index( , )
+ e) regexpr('[a-z][A-Z]', names(LifeCycleSavings))  <------->   
+ f) gsub('[$,]', '', "$11,110.19")    <-------> 
 
 
-
+###  20: migrate data from SAS to R
+# save sas data in transport format
+libname temp xport "/home/sas2r";
+data temp.mydata;
+	set my_sas_data;
+run;
+# in R, read in the data with sasxport.get function from library(Hmisc)
+library(Hmisc)
+mydata<-sasxport.get("/home/sas2r")
+# to export the data to an txt file, delimited by Tab
+write.table(mydata, "/home/rout", sep="\t")
 
 
 
