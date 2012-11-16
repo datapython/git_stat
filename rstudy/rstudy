@@ -261,7 +261,14 @@ mydata<-sasxport.get("/home/sas2r")
 write.table(mydata, "/home/rout", sep="\t")
 
 
-
+###  21: reshape data from long to wide or wide to long with library(reshape2)
+aggregate(cbind(mpg, wt)~gear+carb, mtcars, sum)->agg1
+library(reshape2)
+# from wide to long
+melt(agg1, id.var=c("gear","carb"), measure.var=c("mpg", "wt"))->w2l
+# from long to wide
+dcast(w2l, gear+carb~variable, value.var="value")
+## be careful when use dcast, the values of gear and carb should be unique. if not, then it will issue warnning like "Aggregation function missing: defaulting to length" because this dcast will do aggregate for melt result.
 
 
 
