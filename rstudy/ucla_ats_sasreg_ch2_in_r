@@ -1,4 +1,4 @@
-near regression diagnostic
+## linear regression diagnostic
 
 library(foreign)
 read.spss("http://dl.dropbox.com/u/10684315/ucla_reg/crime.sav",to.data.frame=T)->crime
@@ -110,12 +110,25 @@ elem_reg6<-lm(api00~acs_k3+grad_sch+col_grad+some_col, data=elem2)
 vif(elem_reg6)
 
 
-############################################  PART 4: Test of Linearity  ############################
+############################################  PART 5: Test of Linearity  ############################
 nations<-read.spss("http://dl.dropbox.com/u/16198727/ucla_ats/nations.sav", to.data.frame=T)
 names(nations)<-tolower(names(nations))
 nat_reg1<-lm(birth~gnpcap, data=nations)
 plot(nations$gnpcap, nations$birth, col=1)
 plot(nat_reg1$fitted, nat_reg1$residuals)
+# component+residual plots (also called partial-residual plots)
+crPlots(nat_reg1)
+ceresPlots(nat_reg1)
+
+############################################  PART 6: Model Specification  ############################
+
+
+
+############################################  PART 7: Independence Issue  ############################
+
+
+
+
 
 
 
