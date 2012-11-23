@@ -1,0 +1,125 @@
+near regression diagnostic
+
+library(foreign)
+read.spss("http://dl.dropbox.com/u/10684315/ucla_reg/crime.sav",to.data.frame=T)->crime
+
+head(crime)
+
+summary(crime)
+
+## change upcase column names to lowcase
+names(crime)<-tolower(names(crime))
+row.names(crime)<-crime$state
+## scatter plot crime, pctmetro, poverty, single
+plot(crime[,c("crime","pctmetro","poverty","single")])
+
+
+############################################  PART 1: outlier, leverage and influences detect  ############################
+## plot crime vs single and add state as the label to each point
+plot(crime$pctmetro,crime$crime)
+text(crime$pctmetro,crime$crime,crime$state,cex=.5,pos=2)
+
+lm(crime~pctmetro+poverty+single,crime)->crime_reg1
+summary(crime_reg1)
+
+### some important statistics
+leverage=hatvalues(crime_reg1)
+r_std=rstudent(crime_reg1)
+cd=sqrt(cooks.distance(crime_reg1))
+vif(crime_reg1)
+## plot leverage vs r_std^2
+plot(r_std^2, leverage)
+text(r_std^2,leverage, crime$state, cex=.5, pos=2)
+
+
+
+plot(crime_reg1,which=1)  ## residuals vs fitted value
+plot(crime_reg1,which=2)  ## sqrt std resid vs theoretial quantiles
+plot(crime_reg1,which=3)  ## sqrt std resid vs fitted value
+plot(crime_reg1,which=4)  ## Cook's dist vs obs number
+plot(crime_reg1,which=5)  ## sqrt std resid vs leverage
+plot(crime_reg1,which=6)  ## Cook's dist vs leverage
+
+
+avPlots(crime_reg1,"single",labels=row.names(crime),id.method=cooks.distance(crime_reg1),id.n=51)
+
+### dfbetas and its plot. 
+dfbeta(crime_reg1)
+data.frame(dfbetas(crime_reg1))->dfb
+plot(dfb$single,col="black")
+points(dfb$pctmetro,col="green")
+points(dfb$poverty,col="red")
+text(dfb$single, crime$states,cex=.5,pos=2)
+abline(h=-.28)
+abline(h=.28)
+
+##  dfbetas meaning
+lm(crime~pctmetro+poverty+single,crime)->crime_reg1
+lm(crime~pctmetro+poverty+single,crime[-1,])->crime_reg2
+crime_reg1
+crime_reg2
+
+
+plot(density(crime_reg1$residuals))
+
+lm(crime~pctmetro+poverty+single,crime[-1,])->crime_reg2
+
+## the look at the difference of coefficient for single compared with dfbeta*std_error
+
+############################################  PART 2: Residual Normaility Test  ############################
+elem2<-read.spss("http://dl.dropbox.com/u/16198727/ucla_ats/elemapi2.sav", to.data.frame=T)
+head(elem2, n=10)
+elem_reg1<-lm(api00~meals+ell+emer, data=elem2)
+ls(elem_reg1)
+## plot of density of residuals
+plot(density(elem_reg1$residuals), col='blue')
+# qplot(density(elem_reg1$residuals)$x, density(elem_reg1$residuals)$y, geom="smooth", colour="yellow")
+qqnorm(elem_reg1@residuals)
+# or library(car)  qqPlot(elem_reg1)
+
+############################################  PART 3: Test of Heteroscedasticity  ############################
+plot(elem_reg1$fitted.values, elem_reg1$residuals, col="blue", main="Fitted values vs Residuals")
+## to use White Test for heteroscedasticity, need to use library(lmtest)
+library(lmtest)
+bptest(elem_reg1)
+ncv.test(elem_reg1)
+hccm(elem_reg1)
+
+# an example of non-consistant variance:
+elem_reg2<-lm(api00~enroll, data=elem2)
+plot(elem_reg2$fitted, elem_reg2$residuals, col='blue', main="Fitted vs Residuals")
+abline(h=0)
+# log tramsform
+elem_reg3<-lm(api00~log(enroll), data=elem2)
+plot(elem_reg3$fitted, elem_reg3$residuals, col='blue', main="Fitted vs Residuals")
+abline(h=0)
+
+# another example of using enroll without transform, but also other variables
+elem_reg4<-lm(api00~meals+ell+emer+enroll, data=elem2)
+plot(elem_reg4$residuals, elem_reg4$fitted, col='blue', main="Fitted vs Residual: with more vars, no transform")
+
+
+############################################  PART 4: Test of Collinearity  ############################
+summary(elem_reg1)
+vif(elem_reg1)
+# another example: need to consider collinearity, here vif for avg_ed and grad_sch and col_grad are high
+elem_reg5<-lm(api00~acs_k3+avg_ed+grad_sch+col_grad+some_col, data=elem2)
+vif(elem_reg5)
+# omit the var avg_ed
+elem_reg6<-lm(api00~acs_k3+grad_sch+col_grad+some_col, data=elem2)
+vif(elem_reg6)
+
+
+############################################  PART 4: Test of Linearity  ############################
+nations<-read.spss("http://dl.dropbox.com/u/16198727/ucla_ats/nations.sav", to.data.frame=T)
+names(nations)<-tolower(names(nations))
+nat_reg1<-lm(birth~gnpcap, data=nations)
+plot(nations$gnpcap, nations$birth, col=1)
+plot(nat_reg1$fitted, nat_reg1$residuals)
+
+
+
+
+
+
+
