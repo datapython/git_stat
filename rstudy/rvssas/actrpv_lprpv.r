@@ -1,8 +1,11 @@
-st=ls())
-rpvdata<-read.csv("D:\\hsong\\SkyDrive\\Public\\landing_page_rpv\\landing_page_rpv.csv",header=T, skip=2)
-rpvdata=rpvdata[product_count>0,]
+cat("\014")
+rm(list=ls())
+rpvdata<-read.csv("D:\\SkyDrive\\Public\\landing_page_rpv\\landing_page_rpv.csv",header=T, skip=2)
+
 head(rpvdata)
 names(rpvdata)<-tolower(names(rpvdata))
+rpvdata=rpvdata[rpvdata$product_count>0,]
+
 sapply(rpvdata, class)
 rpvdata$lprpv=rpvdata$projected_rpv
 attach(rpvdata)
@@ -43,3 +46,8 @@ cutf(lprpv[prod_cnt_flag==1])
 df_wtm2<-as.data.frame(cbind(lprpv, actrpv, lprpv_rank, visits_wt, prod_cnt_flag))
 lprpv_m=ddply(df_wtm2, .(prod_cnt_flag, lprpv_rank), function(x) data.frame(lprpv_mean=weighted.mean(x$lprpv, x$visits_wt)))
 
+par(mfrow=c(2,2))
+library(ggplot2)
+for (i in 1:4){
+  qplot(overall_m[[i]]$lprpv_mean, overall_m[[i]]$actrpv_mean, col=i)
+}
