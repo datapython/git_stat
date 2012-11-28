@@ -40,14 +40,24 @@ for (i in 1:4){
   overall_m[[i]]=overall_wt_m
   }
 
+par(mfrow=c(2,2))
+library(ggplot2)
+for (i in 1:4){
+  qplot(overall_m[[i]]$lprpv_mean, overall_m[[i]]$actrpv_mean, col=i)
+}
+
+## or plot with ggplot2, concatenate the list to a long data frame
+df=as.data.frame(do.call(rbind, overall_m))
+library(ggplot2)
+p<-ggplot(df, mapping=aes(lprpv_mean, actrpv_mean))
+p+geom_point()+stat_smooth()+facet_wrap(~prod_cnt_group, ncol=1)
+
+
+****************
+
 lprpv_rank=tapply(lprpv[product_count>0], prod_cnt_flag[product_count>0], cutf)
 ## in each prod_cnt_flag, calc the weighted mean 
 cutf(lprpv[prod_cnt_flag==1])
 df_wtm2<-as.data.frame(cbind(lprpv, actrpv, lprpv_rank, visits_wt, prod_cnt_flag))
 lprpv_m=ddply(df_wtm2, .(prod_cnt_flag, lprpv_rank), function(x) data.frame(lprpv_mean=weighted.mean(x$lprpv, x$visits_wt)))
 
-par(mfrow=c(2,2))
-library(ggplot2)
-for (i in 1:4){
-  qplot(overall_m[[i]]$lprpv_mean, overall_m[[i]]$actrpv_mean, col=i)
-}
