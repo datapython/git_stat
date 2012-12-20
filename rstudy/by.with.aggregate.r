@@ -20,7 +20,8 @@ aggregate(data1[c("visits","revenue","clicks")],by=list(publisher_id=data1$PUBLI
 data1_sum[with(data1_sum,order(PUBLISHER_ID,category_id)),]
 
 ###  weighted mean: mean of revenue wegithed by visits at publisher_id category_id level
-by(data1, list(publisher_id=data1$PUBLISHER_ID,category_id=data1$category_id), function(data1) weighted.mean(data1$revenue,data1$visits))
+wt1<-by(data1, list(publisher_id=data1$PUBLISHER_ID,category_id=data1$category_id), function(data1) weighted.mean(data1$revenue,data1$visits))
+do.call(rbind,wt1)
 
 
 
