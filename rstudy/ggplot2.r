@@ -21,3 +21,14 @@ p1 = p + geom_text(aes(x = 25, y = 300, label = lm_eqn(df)), parse = TRUE)
 
 p1
 
+
+###  2: add the number of counts in the histogram / bar plot
+library(plyr)
+library(ggplot2)
+ggplot(diamonds)+geom_histogram(aes(cut))
+ 
+cut_avg <- aggregate(.~cut, diamonds, length)
+
+ggplot(diamonds)+geom_histogram(aes(cut), colour="blue", fill="white")+geom_text(aes(y=cut_avg$depth, x=cut_avg$cut, label=cut_avg$depth), size=10)
+
+
