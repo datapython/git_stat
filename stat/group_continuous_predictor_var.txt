@@ -1,0 +1,12 @@
+1: Y is continuous
+
+If X is continuous and not strongly correlated with y, we can do
+
+	1) use additive models/non-linear regression/splines, like proc gam / proc transreg / proc nlmix and so on
+
+	2) categorize the continuous variables using quantiles, optimal bining in EM and so on. We can use quantiles in SAS by using proc univariate to provide the quantiles and then format the data. An example is in fb.ad.rank.v2.sas.
+
+
+2: if Y is categorical
+
+	we can still use similar way.

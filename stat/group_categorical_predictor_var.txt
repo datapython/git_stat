@@ -1,0 +1,12 @@
+1: if the DV(y) is categorical
+
+	1) if the X is categorical having a lot of levels, then we need to group the levels to less. In SAS training it provides a way of doing this by proc cluster with WALD method and select the number of clusters automatically based on the chi-square value.
+
+	2) second way: at each level of X, calculate the percentage of success, and then rank these pct of success to the number of groups you want(like how many clusters you want to keep). Then use format to go back to group the original levels.
+
+
+2: if the DV(y) is continuous
+
+	1) we can still use the second way above by calculating the mean on each original level instead of calculating the pct of success.
+
+
