@@ -1,0 +1,21 @@
+A brief introduced in http://statistics.ats.ucla.edu/stat/sas/library/SASNLin_os.htm#Comparing single parameters among treatments
+
+A regression model is called nonlinear, if the derivatives of the model with respect to the model parameters depends on one or more parameters.
+
+
+
+SAS PROCS
+	proc nlin, need to specify the model formular in the model statement
+
+	proc nlmixed
+
+	proc glimmix: The GLIMMIX procedure fits statistical models to data with correlations or nonconstant variability and where the response is not necessarily normally distributed. These models are known as generalized linear mixed models (GLMM).
+
+
+
+
+Box-cox transform
+	library(MASS)
+	par(mfrow=c(1,2))
+	boxcox(y~x, lambda=seq(-.2, .2, .01))
+
