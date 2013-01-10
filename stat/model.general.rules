@@ -1,0 +1,17 @@
+General rules in Modeling:
+
+1: data study
+	1.1: the distribution of each variables:       For continuous variables, are they skewed, or Bell shape? or are they messed together? what is the histogram? Then think of if transformation is necessary for it.      For categorical variables: what's their frequency? If some levels are sparse, then we need to group them. 
+	1.2: the relation between DV and IV:       For continuous, if they are linear then it is good, if not, then maybe transformation, or bin the IV and then check the mean of DV on each bin, or use quantiles to bin.      For categorical, we can cluster the levels by the average of DV on each level.
+	1.3: if the DVs are not many, then maybe use splines to smooth the data
+
+
+2: choose suitable models and pick the best one
+	2.1: regression, decision tree, neural network, and son on. Check if the coefficient makes sense or not.
+	2.2: compare different models:         For continuous DV, use MSE, or sth like the gains(top percentiles capture of the true value);       For categorical, use ROC, or gain, lift and so on.
+
+
+3: validate the result: 
+
+
+
