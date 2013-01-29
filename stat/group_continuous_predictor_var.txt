@@ -9,4 +9,6 @@ If X is continuous and not strongly correlated with y, we can do
 
 2: if Y is categorical
 
-	we can still use similar way.
+	we can still use similar way. A common method used in called WOE(weight of evidence) and use information criteria to select significant variable. 
+	WOE will be monotonic to the log odds of y.
+
