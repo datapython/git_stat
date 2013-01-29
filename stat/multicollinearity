@@ -1,0 +1,25 @@
+Definition :  some of the independent variables (X) are correlated in multiple regression, e.g., cov(X1, X2)>0 or X2=a+bX1, then design matrix is not full rank
+
+
+Effect : 
+
+because of (X'X)^{-1} does not exist, the estimated coefficient is not accurate. A var should have positive coefficient may have a negative one. The coefficient estimates may change erratically in response to small chenges in the model or the data. 
+
+because of (X'X)^{-1}, the standard error of the estimates will be very large for the multicollinearity variables. Thus test statistic will be very small. Thus cannot reject the hypothesis that the coefficient is 0. 
+
+
+Multicollinearity does not reduce the predictive power or reliability of the model as a whole, at least within the sample data themselves; it only affects calculations regarding individual predictors.
+
+
+Detection:
+large standard error
+vif / tolerance
+
+
+Remedies:
+1: leace it as is
+2: drop correlated IV
+3: ridge regression
+4: increase sample size
+5: standardize the independent variables
+
