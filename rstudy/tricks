@@ -1,0 +1,11 @@
+1: install packages
+install.packages("ROCR")
+library(ROCR)
+
+2: list functions in a given package
+library(help=MASS)
+ls("package:MASS")
+lsf.str("package:MASS")
+
+
+
