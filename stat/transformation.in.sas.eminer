@@ -1,0 +1,25 @@
+Standardize: standardizes the variable by subtracting the mean and dividing by the standard deviation.
+
+Range: transformed using a scaled value of a variable equal to (x - min) / (max - min), where x is current variable value, min is the minimum value for that variable, and max is the maximum value for that variable.
+
+Bucket: buckets are created by dividing the data into evenly spaced intervals based on the difference between the maximum and minimum values.
+
+Quantile: data is divided into groups with approximately the same frequency in groups.
+
+Optimal Binning: data is binned in order to maximize the relationship to the target.
+
+Maximum Normal: a best power transformation to maximize normality.
+
+Maximum Correlation: a best power transformation to maximize correlation to the target. No transformation occurs if used on data sets with non-interval targets.
+
+Equalize: a best power transformation to equalize spread with target levels.
+
+Optimal Max. Equalize: an optimized best power transformation to equalize spread with target levels.
+
+
+
+
+
+
+
+
