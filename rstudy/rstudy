@@ -4,7 +4,9 @@
 
 ###  2: Run R job in linux serser  ###
 #  R CMD BATCH rjob.R , then there will be generated .Rout file  ###
-#  R to execute system commane: system function, and pipe to set up pipe connection
+#  R --vanilla < myCode.R >& output.Rout &  
+#  source("rjob.R") to run from R console
+#  R to execute system command: system function, and pipe to set up pipe connection
 #  R system and foreign language interface: Sys.getenv, file.access, file.append, file.copy, 
 #  details: http://cran.r-project.org/doc/manuals/R-lang.html#System-and-foreign-language-interfaces
 # list objects in a package:  ls("package:plyr")
@@ -75,7 +77,7 @@ table(PUBLISHER_ID,category_id)
 # then you can cite the output as a matrix #
 
 
-###  7: R: how to draw several graphs on one phrah (overlap)  ###
+###  7: R: how to draw several graphs on one graph (overlap)  ###
 after plot() draw the first one, use par(new=TRUE), then draw the second one
 sometimes it is better to use the same axis notations like all plots add the limitations as plot(¡­¡­¡­¡­,xlim=c))
 
@@ -277,7 +279,8 @@ dcast(w2l, gear+carb~variable, value.var="value")
 table(cut(lprpv, breaks=quantile(lprpv, probs=c(0:20/20)), labels=0:19, include.lowest=T, right=F))
 table(cut(cars$speed, breaks=quantile(cars$speed, probs=c(0:15/15)), labels=1:15, include.lowest=TRUE))
 
-
+###  23: in R run the linux system command
+system("ls -ltr")
 
 
 
