@@ -299,4 +299,34 @@ for (i in files){
 	write.table(x,paste(i, c(".out"), sep=""), quote=F, sep="\t", col.names=NA)
 }
 
+###  26: loops in R
+# 1: for loops
+x=c("one", "two", "three")
+for (i in x){
+	print (i)
+}
+# 2: while loop
+x=1
+while (x<=10){
+	print(x)
+	x=x+2
+}
+# 3: repeat loop
+x=1
+repeat{
+	x=x+2
+	if (x>=10) break()
+	print(x)
+}
+# 4: apply, sapply, lapply, tapply
+x=matrix(1:80,8,10, byrow=T)
+apply(x,1,sum)  # apply(X, MARGIN, FUN, ARGs)
+
+
+
+
+
+
+
+
 
