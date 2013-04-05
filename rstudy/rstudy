@@ -11,6 +11,7 @@
 #  details: http://cran.r-project.org/doc/manuals/R-lang.html#System-and-foreign-language-interfaces
 # list objects in a package:  ls("package:plyr")
 # list function in a package: lsf.str("package:plyr")
+# list data set in a package: data()
 # install.packages("plyr")
 
 ###  3: R usrful commands  ###
@@ -282,5 +283,20 @@ table(cut(cars$speed, breaks=quantile(cars$speed, probs=c(0:15/15)), labels=1:15
 ###  23: in R run the linux system command
 system("ls -ltr")
 
+###  24: variable selection with step function
+# R provides the step function to do variable selection by AIC
+# variable selection cannot solve the multicollinearity issue
+lm1=lm(y~x+x1+x2+x3+x4+x5)
+summary(lm1)
+step(lm1)
+
+###  25: batch import and export many files
+files<-list.files(pattern="*.txt$")
+for (i in files){
+	x<-read.table(i, header=T, comment.char="A", sep="\t")
+	assign(i, x)
+	print(i)
+	write.table(x,paste(i, c(".out"), sep=""), quote=F, sep="\t", col.names=NA)
+}
 
 
