@@ -35,7 +35,38 @@ names(slm)  # names function is to find available elements of an object
 ## S4 class: 
 
 
+###  2.7
+readbig=function(file, samplesz, chunksz, nrec=0){
+	if (nrec<0) nrec=length(count.fields(file))
+	f=file(file,'r')
+	on.exist(close(f))
+	use=sort(sample(nrec, samplesz))
+	now=readLines(f,1)
+	k=length(strsplit(now,' +')[[1]])
+	seek(f,0)
 
+	result=matrix(0,samplesz,k)
+
+	read=0
+	left=nrec
+	got=1
+
+	while(left>0){
+		now=matrix(scan(f,n=chunksz*k), ncol=k, byrow=T)
+		begin=read+1
+		end=read+chunksz
+		want=(begin:end)[begin:end %in% use] - read
+		if (length(want) > 0){
+			nowdat=now[want,]
+			nowgot=got+length(want)-1
+			result[got:newgot,]=nowdat
+			got=newgot+1
+		}
+		read=read+chunksz
+		left=left-chunksz
+	}
+	return(result)
+}
 
 
 
