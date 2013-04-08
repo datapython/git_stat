@@ -16,8 +16,27 @@
 
 ###  3: R usrful commands  ###
 attributes(mydata)  names(mydata)  class(mydata)  scan, search(),  data(), ls(), ls.str(), cat("\014")       
-load   attach   getwd()  dir("/dir")   options()   history(max.show=Inf)    savehistory()  loadhistory()
-save.image()    save(object)   source()   sink()
+load   attach,   getwd()  dir("/dir") setwd()"/home/hsong"),   options()   
+history(max.show=Inf)    savehistory()  loadhistory()
+save.image()    save(object)   source()   sink() apropos("sin"),  gc(),  system("ls -ltr")
+intersect, setdiff, union,    
+# read in data
+read.table, scan, cat
+# write to table
+write.table(data_frame, file="./mydf", sep="/t", col.names=NA)
+save(df, file="./mydf");   load("./mydf")
+###############  batch read in files ####################
+files=list.files(pattern=".txt$")
+for (i in files){
+	x=read.table(i, header=T, row.names=1, comment.char="A", sep="\t")
+	assign(i, x)
+	write.table(x, paste(i, c(".out"), sep=""), quote=F, sep="\t", col.names=NA)
+}
+##########################################################
+sink("temp_R_output")  ## redirect all subsequent output to temp_R_output
+sink()
+
+
 
 ###  3: R: do like SAS proc summary  ###
 read.csv("D:/hsong/SkyDrive/Dropbox/sampledata.csv")->data1
@@ -25,6 +44,8 @@ data.frame(data1)->data1
 attach(data1)
 names(data1)   ### check column names of data frame in R
 aggregate(clicks,list(report_date,category_id),mean)   
+aggregate(clicks~report_date+category_id, data1, mean)
+tapply(clicks,list(report_date,category_id),mean) #which is much faster
 ### calculate the mean of clicks on report_date and category_id
 ###  similar to SAS: class report_date category_id; var clicks;
 
