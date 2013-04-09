@@ -344,6 +344,14 @@ x=matrix(1:80,8,10, byrow=T)
 apply(x,1,sum)  # apply(X, MARGIN, FUN, ARGs)
 
 
+###  27: use scan to read in temp data for ad-hoc analysis
+# like cp data from sas proc print to draw graph in R. We can save data in txt then read.table.
+# a simple way is to copy and paste to scan function
+x=scan(what=list(a1=0, a2=0))
+# then paste the copied data(two columns)
+y=data.frame(x)
+
+
 
 
 
