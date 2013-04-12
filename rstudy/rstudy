@@ -352,7 +352,28 @@ x=scan(what=list(a1=0, a2=0))
 y=data.frame(x)
 
 
+###  28: read in SAS data set into R (SAS is necessary)
+##1: first use SAS to export data to csv or dlm, then use R
+libname test "/data02/temp/temp_hsong/test";
+proc export data=test.hsb12 outfile="/data02/temp/temp_hsong/test/sasxport" dbms=dlm replace;
+        delimiter=",";
+run;
+# Then read in the exported data with R
+read.table("/data02/temp/temp_hsong/test/sasxport.txt", header=T)
+##2: to read in with the package {Hmisc}
+library(Hmisc)
+hsb12=sas.get(lib="/data02/temp/temp_hsong/test", mem="hsb12", as.is=T)
+##3: read with library {foreign}, but I did not run it successfully
+read.xport("path")
 
+
+###  29: R: tips and tricks to increase the reading speed
+# test to read /data02/temp/temp_hsong/test/hsb12.sas7bdat
+system.time(read.table("/data02/temp/temp_hsong/test/sasxport.txt", header=T))
+system.time(read.table("/data02/temp/temp_hsong/test/sasxport.txt", header=T, stringsAsFactors=F))
+system.time(read.table("/data02/temp/temp_hsong/test/sasxport.txt", header=T, comment.char=''))
+system.time(read.table("/data02/temp/temp_hsong/test/sasxport.txt", header=T, nrows=8000))
+system.time(read.table("/data02/temp/temp_hsong/test/sasxport.txt", header=T, sep=',', colClasses=c(rep("numeric",11))))
 
 
 
