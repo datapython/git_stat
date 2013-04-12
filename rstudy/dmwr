@@ -4,19 +4,23 @@ scan(what="")    ## to read from input
 scan(what=list(a=0, b="b", c=0)  ## read in 3 cols, num, char and num, and named a, b, c
 values=scan(filename,what=c(f1=0, NULL, f3=0, rep(list(NULL),6), f10=0) ## read 3 cols from 10 cols
 
+
 ###  2.2
 # read.table alwasy return a data.frame, meaning mixed mode. if single mode, then scan is faster
 # read.table expects the same number of fields on each line, and will report error if otherwise
 # stringAsFactors= , as.is , na.string , comment.char= , sep= , dec= , skip= , nrows= , fill=TRUE
 # count.fields helps to find where the field problem is
-# cloClasses= , 
+# cloClasses= 
+
 
 ###  2.3
 # read.csv(comma), read.csv2(semicolon), read.delim(tab-delimited)
 
+
 ###  2.4
 read.fwf("d:\\SkyDrive\\r_temp\\city.txt", width=c(19,9), as.is=TRUE)
 city$V2=as.numeric(gsub(",","",city$V2))
+
 
 ###  2.5
 # A list with an associated "class" attribute designating what type of list it is is an S3 class.
