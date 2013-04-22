@@ -1,0 +1,7 @@
+url="http://ichart.finance.yahoo.com/table.csv?s=IBM"
+
+df=read.csv(url)
+
+df$stock=apply(df, 1, function(row) "IBM")
+
+write.table(df, file="ibm.txt", append=F, quote=F, sep=",", eol="\n", na="NA", dec=".", row.names=F, col.names=F, qmethod="double")
