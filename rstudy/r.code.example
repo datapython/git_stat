@@ -1,0 +1,15 @@
+#1: to generate permunation
+
+perm_of_n <- function(n, r, v=1:n){
+	if (r==1) 
+		matrix(v, n, 1)
+	else if (n==1)
+		matrix(v, 1, r)
+	else {
+		x <- NULL
+		for (i in 1:n){
+			x <- rbind(x, cbind(v[i], perm_of_n(n-1, r-1, v[-i])))
+		}
+		x
+	}
+}
