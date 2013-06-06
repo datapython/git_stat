@@ -1,7 +1,7 @@
 *********************************************************************************;
 * This is an example to test the piecewise linear regression 			*;
 * denote the cut off points as c1 c2 c3 ... cn               			*; 
-* y = b0 + b1 * (x-0) I(x<c1) + \sum_{i=1}^{n} b(i+1) * (x-ci) I(ci=<x<c(i+1))  *;  
+* y = b0 + b1 * x + \sum_{i=1}^{n} b(i+1) * (x-ci) I(ci=<x)                     *;  
 *********************************************************************************;
 
 data test;
