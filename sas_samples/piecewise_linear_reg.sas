@@ -100,3 +100,53 @@ proc gplot data=reg_out;
 	plot (y yhat) * x / overlay legend=legend1 vaxis=axis1;
 run;
 
+
+proc sql;
+        select col1 into :m_intercept from ests where lowcase(trim(left(_name_)))="intercept";
+quit;
+
+%put m_intercept=&m_intercept;
+
+data temp_est;
+        set ests;
+        if _name_ = :"x_g_";
+        x_g_n=substr(_name_,5)+0;
+        x_lb=put(x_g_n, x_lb.);
+        x_ub=put(x_g_n, x_ub.);
+run;
+
+proc print data=temp_est;
+run;
+
+proc sort data=temp_est;
+        by x_g_n;
+run;
+
+data temp_est;
+        set temp_est;
+        retain new_intercept &m_intercept new_scope 0;
+        new_scope + col1;
+        new_intercept + (-x_lb * col1);
+run;
+
+proc print data=temp_est;
+run;
+
+** pick some data to double check they are the same **;
+data double_check;
+        set reg_out(keep=x y yhat);
+        if 15.707963267949<x<18.8495559215388;
+        yhat2=-13.3727+0.77394*x;
+run;
+
+proc print data=double_check;
+run;
+
+
+
+
+
+
+
+
+
