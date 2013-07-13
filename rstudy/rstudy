@@ -19,7 +19,7 @@ attributes(mydata)  names(mydata)  class(mydata)  scan, search(),  data(), ls(),
 load   attach,   getwd()  dir("/dir") setwd("/home/hsong"),   options()   
 history(max.show=Inf)    savehistory()  loadhistory()
 save.image()    save(object)   source()   sink() apropos("sin"),  gc(),  system("ls -ltr")
-intersect, setdiff, union,    
+intersect, setdiff, union,  unlink(".RData")  
 # read in data
 read.table, scan, cat
 # write to table
