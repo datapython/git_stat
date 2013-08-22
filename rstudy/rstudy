@@ -406,5 +406,15 @@ points(new.x, predict(model, newdata = data.frame(x = new.x)), col = "red", pch 
 points(knots, predict(model, newdata = data.frame(x = knots)), col = "red", pch = 18)
 
 
+###  31: R: check what a function is rather than what a function does
+# method 1: use :::
+methods(kruskal.test)
+stats:::kruskal.test.default
+# method 2: use getAnywhere
+methods(krustal.test)
+getAnywhere(krustal.test.default)
+# method 3: go the the R source code, name.tar.gz file
+find the .tar.gz version of the package, look for the 'R' directory and you will find the source code (with the developper's comments, if any)
+
 
 
